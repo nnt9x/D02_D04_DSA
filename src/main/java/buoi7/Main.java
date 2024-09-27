@@ -17,5 +17,25 @@ public class Main {
         linkedList.insertAtPosition(5, 6);
         linkedList.display();
 
+        // Xoa phan tu dau
+        int begin = linkedList.deleteAtBegin();
+        System.out.println("Begin: " + begin);
+        linkedList.display();
+
+        begin = linkedList.deleteAtBegin();
+        System.out.println("Begin: " + begin);
+        linkedList.display();
+
+        // Xoa cuoi
+        int last = linkedList.deleteAtEnd();
+        System.out.println("Last: " + last);
+        linkedList.display();
+
+        // Xoa theo position
+        int deleteData = linkedList.deleteAtPosition(1);
+        System.out.println("Delete: " + deleteData);
+        linkedList.display();
+
+
     }
 }

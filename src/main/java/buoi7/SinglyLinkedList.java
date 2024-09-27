@@ -77,17 +77,77 @@ public class SinglyLinkedList<T> implements LinkedList<T> {
 
     @Override
     public T deleteAtBegin() {
-        return null;
+        if (size == 0) {
+            throw new RuntimeException("Linked list is empty");
+        }
+        T data = null;
+
+        if (size == 1) {
+            data = head.getData();
+            head = null;
+            size--;
+        } else {
+            // Có ít nhất 2 phần tử
+            Node<T> newHead = head.getNext();
+            // Lay du lieu
+            data = head.getData();
+            // setnext head -> null
+            head.setNext(null);
+            head = newHead;
+            size--;
+        }
+        return data;
     }
 
     @Override
     public T deleteAtEnd() {
-        return null;
+        if (size == 0) {
+            throw new RuntimeException("Linkedlist is empty");
+        } else if (size == 1) {
+            return deleteAtBegin();
+        } else {
+            // Xoa phan tu cuoi
+            Node<T> tmp = head; // tmp: node gần cuối
+            while (tmp.getNext().getNext() != null) {
+                tmp = tmp.getNext();
+            }
+            // Node cuoi
+            Node<T> lastNode = tmp.getNext();
+            // Xoa lien ket
+            tmp.setNext(null);
+            // Giam size
+            size--;
+            return lastNode.getData();
+        }
     }
 
     @Override
     public T deleteAtPosition(int position) {
-        return null;
+        // TH1: 
+        if (position == 0) {
+            return deleteAtBegin();
+        } else if (position == size - 1) {
+            return deleteAtEnd();
+        } else if (position < 0 || position >= size) {
+            throw new RuntimeException("Index out of range");
+        } else {
+            // Xoa:
+            // position - 1: prev
+            // position: curr
+            // position + 1: next
+
+            Node<T> prev = head;
+            for (int i = 0; i < position - 1; i++) {
+                prev = prev.getNext();
+            }
+            Node<T> curr = prev.getNext();
+            Node<T> next = curr.getNext();
+
+            prev.setNext(next);
+            curr.setNext(null);
+            size--;
+            return curr.getData();
+        }
     }
 
     @Override
