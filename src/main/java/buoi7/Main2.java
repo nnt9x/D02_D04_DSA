@@ -6,6 +6,5 @@ public class Main2 {
         linkedList.insertAtBegin(10);
         linkedList.insertAtBegin(20);
         linkedList.display();
-
     }
 }
